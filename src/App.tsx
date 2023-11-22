@@ -1,26 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import styled from "styled-components";
+import { Layout,  Typography, theme } from "antd";
 
-function App() {
+const { Header, Content, Footer } = Layout;
+
+const App: React.FC = () => {
+  const {
+    token: { colorBgContainer }
+  } = theme.useToken();
+
+  const SHeader = styled(Header)`
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: #2c3e50;
+  `;
+
+  const STitle = styled(Typography.Title)`
+    color: #ecf0f1 !important;
+  `;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <Layout>
+      <SHeader>
+        <div>
+          <STitle level={1}>
+            Simple Memo
+          </STitle>
+        </div>
+      </SHeader>
+      <Content className="site-layout">
+        <div
+          style={{ padding: 24, minHeight: 380, background: colorBgContainer }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          Content
+        </div>
+      </Content>
+      <Footer style={{ textAlign: "center" }}>
+        Ant Design ©2023 Created by Ant UED
+      </Footer>
+    </Layout>
   );
-}
+};
 
 export default App;
