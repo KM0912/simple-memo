@@ -1,8 +1,7 @@
-import { Layout, Typography } from "antd";
 import React from "react";
 import styled from "styled-components";
-
-const { Header: AntHeader } = Layout;
+import { Typography } from "antd";
+import { Header as AntHeader } from "antd/es/layout/layout";
 
 const SHeader = styled(AntHeader)`
   position: sticky;
