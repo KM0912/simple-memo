@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Layout, theme } from "antd";
+import { Button, Layout, Space, theme } from "antd";
 import TextArea from "antd/es/input/TextArea";
 
 const { Content: AntContent } = Layout;
@@ -8,6 +8,10 @@ const { Content: AntContent } = Layout;
 const SDiv = styled.div`
   padding: 24px;
   background: ${(props) => props.theme.colorBgContainer};
+`;
+
+const SSpace = styled(Space)`
+  width: 100%;
 `;
 
 const Content: React.FC = () => {
@@ -21,15 +25,25 @@ const Content: React.FC = () => {
     localStorage.setItem("notes", e.target.value);
   };
 
+  const handleDelete = () => {
+    setValue("");
+    localStorage.removeItem("notes");
+  };
+
   return (
     <AntContent className="site-layout">
       <SDiv theme={{ colorBgContainer }}>
-        <TextArea
-          value={value}
-          onChange={handleChange}
-          placeholder="Enter your notes here..."
-          autoSize={{ minRows: 25, maxRows: 25 }}
-        />
+        <SSpace direction="vertical" size="small">
+          <TextArea
+            value={value}
+            onChange={handleChange}
+            placeholder="Enter your notes here..."
+            autoSize={{ minRows: 25, maxRows: 25 }}
+          />
+          <Button danger onClick={handleDelete}>
+            Delete Notes
+          </Button>
+        </SSpace>
       </SDiv>
     </AntContent>
   );
