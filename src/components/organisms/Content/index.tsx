@@ -11,17 +11,22 @@ const SDiv = styled.div`
 `;
 
 const Content: React.FC = () => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(localStorage.getItem("notes") || "");
   const {
     token: { colorBgContainer },
   } = theme.useToken();
 
+  const handleChange: React.ChangeEventHandler<HTMLTextAreaElement> = (e) => {
+    setValue(e.target.value);
+    localStorage.setItem("notes", e.target.value);
+  };
+
   return (
     <AntContent className="site-layout">
-      <SDiv style={{ padding: 24, background: colorBgContainer }}>
+      <SDiv theme={{ colorBgContainer }}>
         <TextArea
           value={value}
-          onChange={(e) => setValue(e.target.value)}
+          onChange={handleChange}
           placeholder="Enter your notes here..."
           autoSize={{ minRows: 25, maxRows: 25 }}
         />
