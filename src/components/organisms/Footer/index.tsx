@@ -4,7 +4,7 @@ import { Footer as AntFooter } from "antd/es/layout/layout";
 const Footer: React.FC = () => {
   return (
     <AntFooter style={{ textAlign: "center" }}>
-      Ant Design ©2023 Created by Ant UED
+      Simple Memo ©2023 Created by KM0912
     </AntFooter>
   );
 };
