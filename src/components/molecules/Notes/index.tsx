@@ -1,8 +1,9 @@
-import { Button, Space } from "antd";
+import { Button, Col, Row, Space } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import React, { useState } from "react";
 import styled from "styled-components";
 import { getCurrentDateTime } from "../../../utils/dateUtils";
+import { marked } from "marked";
 
 const SSpace = styled(Space)`
   width: 100%;
@@ -30,14 +31,25 @@ const Notes: React.FC = () => {
     element.click();
   };
 
+  const createMarkup = () => {
+    return { __html: marked(value) };
+  };
+
   return (
     <SSpace direction="vertical" size="small">
-      <TextArea
-        onChange={handleChange}
-        value={value}
-        placeholder="Enter your notes here..."
-        autoSize={{ minRows: 25, maxRows: 25 }}
-      />
+      <Row gutter={16}>
+        <Col span={12}>
+          <TextArea
+            onChange={handleChange}
+            value={value}
+            placeholder="Enter your notes here..."
+            autoSize={{ minRows: 25, maxRows: 25 }}
+          />
+        </Col>
+        <Col span={12}>
+          <div dangerouslySetInnerHTML={createMarkup()} />
+        </Col>
+      </Row>
       <Space direction="horizontal" size="small">
         <Button danger onClick={handleDelete}>
           Delete Notes
