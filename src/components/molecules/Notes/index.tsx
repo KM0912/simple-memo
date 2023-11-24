@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { getCurrentDateTime } from "../../../utils/dateUtils";
 import { marked } from "marked";
+import ButtonWithPopconfirm from "../../atoms/ButtonWithPopconfirm";
 
 const SSpace = styled(Space)`
   width: 100%;
@@ -51,9 +52,19 @@ const Notes: React.FC = () => {
         </Col>
       </Row>
       <Space direction="horizontal" size="small">
-        <Button danger onClick={handleDelete}>
-          Delete Notes
-        </Button>
+        <ButtonWithPopconfirm
+          buttonLabel="Delete Notes"
+          buttonProps={{ danger: true }}
+          popconfirmProps={{
+            title: "メモを削除しますか？",
+            okText: "削除",
+            okType: "danger",
+            cancelText: "キャンセル",
+            onConfirm: handleDelete,
+            onCancel: () => {},
+            placement: "topLeft",
+          }}
+        />
         <Button onClick={downloadNotes}>Download Notes</Button>
       </Space>
     </SSpace>
