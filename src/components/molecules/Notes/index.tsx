@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Button, Col, Row, Space } from "antd";
-import { DeleteOutlined } from "@ant-design/icons";
+import { Col, Row, Space } from "antd";
+import { DeleteOutlined, ExportOutlined } from "@ant-design/icons";
 import TextArea from "antd/es/input/TextArea";
 import styled from "styled-components";
 import { getCurrentDateTime } from "../../../utils/dateUtils";
 import { marked } from "marked";
 import ButtonWithPopconfirm from "../../atoms/ButtonWithPopconfirm";
+import ButtonWithTooltip from "../../atoms/ButtonWithTooltip";
 
 const SSpace = styled(Space)`
   width: 100%;
@@ -65,7 +66,13 @@ const Notes: React.FC = () => {
             placement: "topLeft",
           }}
         />
-        <Button onClick={downloadNotes}>Download Notes</Button>
+        <ButtonWithTooltip
+          buttonProps={{
+            icon: <ExportOutlined />,
+            onClick: downloadNotes,
+          }}
+          tooltipProps={{ title: "Export" }}
+        />
       </Space>
     </SSpace>
   );
