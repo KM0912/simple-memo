@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Col, Row, Space } from "antd";
+import { Col, Row, Space, Switch } from "antd";
 import { DeleteOutlined, ExportOutlined } from "@ant-design/icons";
 import TextArea from "antd/es/input/TextArea";
 import styled from "styled-components";
@@ -14,6 +14,12 @@ const SSpace = styled(Space)`
 
 const Notes: React.FC = () => {
   const [value, setValue] = useState(localStorage.getItem("notes") || "");
+  const [isMarkdownPreview, setIsMarkdownPreview] = useState(
+    localStorage.getItem("isMarkdownPreview")
+      ? localStorage.getItem("isMarkdownPreview") === "true"
+      : true
+  );
+
   const handleChange: React.ChangeEventHandler<HTMLTextAreaElement> = (e) => {
     setValue(e.target.value);
     localStorage.setItem("notes", e.target.value);
@@ -22,6 +28,11 @@ const Notes: React.FC = () => {
   const handleDelete = () => {
     setValue("");
     localStorage.removeItem("notes");
+  };
+
+  const handleChsnageMarkdownPreview = () => {
+    setIsMarkdownPreview(!isMarkdownPreview);
+    localStorage.setItem("isMarkdownPreview", String(!isMarkdownPreview));
   };
 
   const downloadNotes = () => {
@@ -40,8 +51,15 @@ const Notes: React.FC = () => {
 
   return (
     <SSpace direction="vertical" size="small">
+      <Space direction="horizontal">
+        Markdown Preview
+        <Switch
+          checked={isMarkdownPreview}
+          onChange={handleChsnageMarkdownPreview}
+        />
+      </Space>
       <Row gutter={16}>
-        <Col span={12}>
+        <Col span={isMarkdownPreview ? 12 : 24}>
           <TextArea
             onChange={handleChange}
             value={value}
@@ -49,9 +67,11 @@ const Notes: React.FC = () => {
             autoSize={{ minRows: 25, maxRows: 25 }}
           />
         </Col>
-        <Col span={12}>
-          <div dangerouslySetInnerHTML={createMarkup()} />
-        </Col>
+        {isMarkdownPreview && (
+          <Col span={12}>
+            <div dangerouslySetInnerHTML={createMarkup()} />
+          </Col>
+        )}
       </Row>
       <Space direction="horizontal" size="small">
         <ButtonWithPopconfirm
