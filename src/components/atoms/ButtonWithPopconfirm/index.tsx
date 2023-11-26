@@ -4,7 +4,7 @@ import { Button, ButtonProps, Popconfirm, PopconfirmProps } from "antd";
 type ButtonWithPopconfirmProps = {
   popconfirmProps: PopconfirmProps;
   buttonProps: ButtonProps;
-  buttonLabel: string;
+  buttonLabel?: string;
 };
 
 const ButtonWithPopconfirm: React.FC<ButtonWithPopconfirmProps> = (Props) => {

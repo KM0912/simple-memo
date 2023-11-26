@@ -1,6 +1,7 @@
-import { Button, Col, Row, Space } from "antd";
-import TextArea from "antd/es/input/TextArea";
 import React, { useState } from "react";
+import { Button, Col, Row, Space } from "antd";
+import { DeleteOutlined } from "@ant-design/icons";
+import TextArea from "antd/es/input/TextArea";
 import styled from "styled-components";
 import { getCurrentDateTime } from "../../../utils/dateUtils";
 import { marked } from "marked";
@@ -53,8 +54,7 @@ const Notes: React.FC = () => {
       </Row>
       <Space direction="horizontal" size="small">
         <ButtonWithPopconfirm
-          buttonLabel="Delete Notes"
-          buttonProps={{ danger: true }}
+          buttonProps={{ danger: true, icon: <DeleteOutlined /> }}
           popconfirmProps={{
             title: "メモを削除しますか？",
             okText: "削除",
