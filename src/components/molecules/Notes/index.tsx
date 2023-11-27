@@ -35,12 +35,23 @@ const Notes: React.FC = () => {
     localStorage.setItem("isMarkdownPreview", String(!isMarkdownPreview));
   };
 
-  const downloadNotes = () => {
+  const cleateDownloadElement = (extension: "txt" | "md") => {
     const element = document.createElement("a");
     const file = new Blob([value], { type: "text/plain" });
-    const fileName = "note_" + getCurrentDateTime() + ".txt";
+    const fileName = "note_" + getCurrentDateTime() + "." + extension;
     element.href = URL.createObjectURL(file);
     element.download = fileName;
+    return element;
+  };
+
+  const downloadNotesTxt = () => {
+    const element = cleateDownloadElement("txt");
+    document.body.appendChild(element); // Required for this to work in FireFox
+    element.click();
+  };
+
+  const downloadNotesMd = () => {
+    const element = cleateDownloadElement("md");
     document.body.appendChild(element); // Required for this to work in FireFox
     element.click();
   };
@@ -89,9 +100,18 @@ const Notes: React.FC = () => {
         <ButtonWithTooltip
           buttonProps={{
             icon: <ExportOutlined />,
-            onClick: downloadNotes,
+            onClick: downloadNotesTxt,
           }}
           tooltipProps={{ title: "Export" }}
+          buttonLabel="Export to txt"
+        />
+        <ButtonWithTooltip
+          buttonProps={{
+            icon: <ExportOutlined />,
+            onClick: downloadNotesMd,
+          }}
+          tooltipProps={{ title: "Export" }}
+          buttonLabel="Export to md"
         />
       </Space>
     </SSpace>
