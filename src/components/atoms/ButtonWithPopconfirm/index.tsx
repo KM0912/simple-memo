@@ -5,13 +5,25 @@ type ButtonWithPopconfirmProps = {
   popconfirmProps: PopconfirmProps;
   buttonProps: ButtonProps;
   buttonLabel?: string;
+  buttonWrapper?: React.FC<{ children: React.ReactNode }>;
 };
 
 const ButtonWithPopconfirm: React.FC<ButtonWithPopconfirmProps> = (Props) => {
-  const { popconfirmProps, buttonProps, buttonLabel } = Props;
+  const {
+    popconfirmProps,
+    buttonProps,
+    buttonLabel,
+    buttonWrapper: ButtonWrapper,
+  } = Props;
   return (
     <Popconfirm {...popconfirmProps}>
-      <Button {...buttonProps}>{buttonLabel}</Button>
+      {ButtonWrapper ? (
+        <ButtonWrapper>
+          <Button {...buttonProps}>{buttonLabel}</Button>
+        </ButtonWrapper>
+      ) : (
+        <Button {...buttonProps}>{buttonLabel}</Button>
+      )}
     </Popconfirm>
   );
 };

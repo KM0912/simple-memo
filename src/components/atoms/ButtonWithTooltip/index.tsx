@@ -5,13 +5,25 @@ type ButtonWithTooltipProps = {
   buttonProps: ButtonProps;
   tooltipProps: TooltipProps;
   buttonLabel?: string;
+  buttonWrapper?: React.FC<{ children: React.ReactNode }>;
 };
 
 const ButtonWithTooltip: React.FC<ButtonWithTooltipProps> = (props) => {
-  const { buttonProps, tooltipProps, buttonLabel } = props;
+  const {
+    buttonProps,
+    tooltipProps,
+    buttonLabel,
+    buttonWrapper: ButtonWrapper,
+  } = props;
   return (
     <Tooltip {...tooltipProps}>
-      <Button {...buttonProps}>{buttonLabel}</Button>
+      {ButtonWrapper ? (
+        <ButtonWrapper>
+          <Button {...buttonProps}>{buttonLabel}</Button>
+        </ButtonWrapper>
+      ) : (
+        <Button {...buttonProps}>{buttonLabel}</Button>
+      )}
     </Tooltip>
   );
 };

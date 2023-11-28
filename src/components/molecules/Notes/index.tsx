@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Col, Row, Space, Switch } from "antd";
+import { Col, Row, Space, Switch, Tooltip } from "antd";
 import { DeleteOutlined, ExportOutlined } from "@ant-design/icons";
 import TextArea from "antd/es/input/TextArea";
 import styled from "styled-components";
@@ -95,6 +95,9 @@ const Notes: React.FC = () => {
             onConfirm: handleDelete,
             onCancel: () => {},
             placement: "topLeft",
+          }}
+          buttonWrapper={({ children }) => {
+            return <Tooltip title="Delete">{children}</Tooltip>;
           }}
         />
         <ButtonWithTooltip
