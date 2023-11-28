@@ -96,7 +96,7 @@ const Notes: React.FC = () => {
             onCancel: () => {},
             placement: "topLeft",
           }}
-          buttonWrapper={({ children }) => {
+          wrapper={({ children }) => {
             return <Tooltip title="Delete">{children}</Tooltip>;
           }}
         />
