@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { Col, Row, Space, Switch, Tooltip } from "antd";
+import { Button, Col, Row, Space, Switch, Tooltip } from "antd";
 import { DeleteOutlined, ExportOutlined } from "@ant-design/icons";
 import TextArea from "antd/es/input/TextArea";
 import styled from "styled-components";
 import { getCurrentDateTime } from "../../../utils/dateUtils";
 import { marked } from "marked";
 import ButtonWithPopconfirm from "../../atoms/ButtonWithPopconfirm";
-import ButtonWithTooltip from "../../atoms/ButtonWithTooltip";
 
 const SSpace = styled(Space)`
   width: 100%;
@@ -100,22 +99,12 @@ const Notes: React.FC = () => {
             return <Tooltip title="Delete">{children}</Tooltip>;
           }}
         />
-        <ButtonWithTooltip
-          buttonProps={{
-            icon: <ExportOutlined />,
-            onClick: downloadNotesTxt,
-          }}
-          tooltipProps={{ title: "Export" }}
-          buttonLabel="Export to txt"
-        />
-        <ButtonWithTooltip
-          buttonProps={{
-            icon: <ExportOutlined />,
-            onClick: downloadNotesMd,
-          }}
-          tooltipProps={{ title: "Export" }}
-          buttonLabel="Export to md"
-        />
+        <Button icon={<ExportOutlined />} onClick={downloadNotesTxt}>
+          Export to txt
+        </Button>
+        <Button icon={<ExportOutlined />} onClick={downloadNotesMd}>
+          Export to md
+        </Button>
       </Space>
     </SSpace>
   );
