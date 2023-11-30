@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/simple-memo/static/css/main.e6c13ad2.css",
+    "main.js": "/simple-memo/static/js/main.6b46d0cb.js",
+    "static/js/787.bc85f7fa.chunk.js": "/simple-memo/static/js/787.bc85f7fa.chunk.js",
+    "index.html": "/simple-memo/index.html",
+    "main.e6c13ad2.css.map": "/simple-memo/static/css/main.e6c13ad2.css.map",
+    "main.6b46d0cb.js.map": "/simple-memo/static/js/main.6b46d0cb.js.map",
+    "787.bc85f7fa.chunk.js.map": "/simple-memo/static/js/787.bc85f7fa.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.6b46d0cb.js"
+  ]
+}
